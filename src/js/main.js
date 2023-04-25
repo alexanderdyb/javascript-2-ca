@@ -1,14 +1,16 @@
 const hamburger = document.querySelector("#hamburger");
 const close = document.querySelector("#close");
+const menu = document.querySelector("#menu");
+const navbar = document.querySelector("#navbar");
 
 hamburger.addEventListener("click", () => {
-  close.classList.remove("hidden");
-  close.classList.add("md:hidden");
-  hamburger.classList.add("hidden");
+  close.classList.toggle("hidden");
+  hamburger.classList.toggle("hidden");
+  menu.classList.toggle("hidden");
 });
 
 close.addEventListener("click", () => {
-  hamburger.classList.remove("hidden");
-  hamburger.classList.add("md:hidden");
-  close.classList.add("hidden");
+  hamburger.classList.toggle("hidden");
+  close.classList.toggle("hidden");
+  menu.classList.toggle("hidden");
 });
