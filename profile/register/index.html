@@ -4,31 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta name="description" content="Register for Noroff forum" />
+    <title>Register</title>
     <script
       src="https://kit.fontawesome.com/b23335820a.js"
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="../../dist/output.css" />
+    <script src="../../src/js/main.mjs" defer type="module"></script>
   </head>
   <body class="bg-gray-100">
     <header>
       <nav class="bg-gray-900" id="navbar">
         <div class="flex justify-between max-w-7xl mx-auto p-4">
-          <h3 class="text-white">Logo</h3>
-          <div>
+          <h3 class="text-white">Noroff forum</h3>
+          <div class="hidden">
             <ul
-              class="hidden h-screen mt-20 text-center md:mt-0 md:h-0 md:flex md:gap-5 text-white"
+              class="hidden items-center h-screen mt-20 text-center md:mt-0 md:h-0 md:flex md:gap-5 text-white"
               id="menu"
             >
               <li class="mb-8 md:mb-0"><a href="#">Profile</a></li>
               <li><a href="#">Feed</a></li>
             </ul>
           </div>
-          <div class="md:hidden" id="hamburger">
+          <div class="hidden" id="hamburger">
             <i class="fa-solid fa-bars" style="color: #ffffff"></i>
           </div>
-          <div class="hidden md:hidden" id="close">
+          <div class="hidden" id="close">
             <i class="fa-solid fa-xmark" style="color: #ffffff"></i>
           </div>
         </div>
@@ -37,28 +39,49 @@
     <main>
       <section class="pr-3 pl-3 pt-[50px] pb-[50px]">
         <div class="max-w-xl mx-auto border-2 p-10 bg-white">
-          <form method="post" action="../index.html">
+          <form id="registerForm" method="post" action="/auth/register">
             <h2 class="text-center mb-5">Register</h2>
             <div class="flex flex-col mb-3">
-              <label for="email">Your email</label>
+              <label for="name">Username</label>
+              <input
+                class="border-[1px] border-gray-400 p-1"
+                type="text"
+                name="name"
+                required
+                pattern="^[\w]+$"
+                title="Username must not contain punctuation symbols apart from underscore (_)."
+              />
+              <label for="email">E-mail</label>
               <input
                 class="border-[1px] border-gray-400 p-1"
                 type="email"
                 name="email"
-                id="email"
-                placeholder="name@company.com"
-                required="@noroff"
+                required
+                pattern="^[\w\-.]+@(stud.)?noroff.no$"
+                title="The email value must be a valid stud.noroff.no or noroff.no email address."
               />
-            </div>
-            <div class="flex flex-col mb-3">
               <label for="password" class="">Password</label>
               <input
                 type="password"
                 name="password"
-                id="password"
                 placeholder="••••••••"
                 class="border-[1px] border-gray-400 p-1"
-                required=""
+                required
+                minlength="8"
+              />
+              <label for="banner">Banner</label>
+              <input
+                class="border-[1px] border-gray-400 p-1"
+                type="url"
+                name="banner"
+                placeholder="Image url"
+              />
+              <label for="avatar">Avatar</label>
+              <input
+                class="border-[1px] border-gray-400 p-1"
+                type="url"
+                name="avatar"
+                placeholder="Image url"
               />
             </div>
             <button
@@ -73,6 +96,6 @@
         </div>
       </section>
     </main>
-    <script src="js/main.js"></script>
+    <script src="../../src/js/handlers/register.js" type="modules"></script>
   </body>
 </html>

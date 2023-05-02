@@ -4,19 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta name="description" content="Login for Noroff forum" />
+    <title>Login</title>
     <script
       src="https://kit.fontawesome.com/b23335820a.js"
       crossorigin="anonymous"
     ></script>
+    <script src="../../src/js/main.mjs" defer type="module"></script>
     <link rel="stylesheet" href="../../dist/output.css" />
   </head>
   <body class="bg-gray-100">
     <header>
       <nav class="bg-gray-900" id="navbar">
         <div class="flex justify-between max-w-7xl mx-auto p-4">
-          <h3 class="text-white">Logo</h3>
-          <div>
+          <h3 class="text-white">Noroff forum</h3>
+          <div class="hidden">
             <ul
               class="hidden h-screen mt-20 text-center md:mt-0 md:h-0 md:flex md:gap-5 text-white"
               id="menu"
@@ -25,10 +27,10 @@
               <li><a href="#">Wall</a></li>
             </ul>
           </div>
-          <div class="md:hidden" id="hamburger">
+          <div class="hidden" id="hamburger">
             <i class="fa-solid fa-bars" style="color: #ffffff"></i>
           </div>
-          <div class="hidden md:hidden" id="close">
+          <div class="hidden" id="close">
             <i class="fa-solid fa-xmark" style="color: #ffffff"></i>
           </div>
         </div>
@@ -73,6 +75,5 @@
         </div>
       </section>
     </main>
-    <script src="js/main.js"></script>
   </body>
 </html>

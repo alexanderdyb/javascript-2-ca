@@ -19,5 +19,8 @@
   "homepage": "https://github.com/alexanderdyb/javascript-2-ca#readme",
   "devDependencies": {
     "tailwindcss": "^3.3.1"
+  },
+  "dependencies": {
+    "caniuse-lite": "^1.0.30001482"
   }
 }
