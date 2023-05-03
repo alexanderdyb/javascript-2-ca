@@ -39,36 +39,34 @@
     <main>
       <section class="pr-3 pl-3 pt-[50px] pb-[50px]">
         <div class="max-w-xl mx-auto border-2 p-10 bg-white">
-          <form action="../../profile/">
-            <h2 class="text-center mb-5">Sign in to your account</h2>
+          <form id="loginForm">
+            <h2 class="text-center mb-5">Login</h2>
             <div class="flex flex-col mb-3">
-              <label for="email">Your email</label>
+              <label for="email">E-mail</label>
               <input
                 class="border-[1px] border-gray-400 p-1"
                 type="email"
                 name="email"
-                id="email"
-                placeholder="name@company.com"
-                required="@noroff"
+                required
+                pattern="^[\w\-.]+@(stud.)?noroff.no$"
+                title="The email value must be a valid stud.noroff.no or noroff.no email address."
               />
-            </div>
-            <div class="flex flex-col mb-3">
               <label for="password" class="">Password</label>
               <input
                 type="password"
                 name="password"
-                id="password"
                 placeholder="••••••••"
                 class="border-[1px] border-gray-400 p-1"
-                required=""
+                required
+                minlength="8"
               />
             </div>
             <button
               class="border-2 w-full bg-blue-950 text-white py-2 mb-3 border-none"
             >
-              Sign in
+              Login
             </button>
-            <a href="../register/" class="text-blue-950 underline text-center"
+            <a href="../register" class="text-blue-950 underline text-center"
               >Register</a
             >
           </form>
