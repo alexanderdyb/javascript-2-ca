@@ -1,6 +1,5 @@
 import { navbarHandler } from "./components/navbar.mjs";
-import { setRegisterFormListener } from "./handlers/register.mjs";
-import { setLoginFormListener } from "./handlers/login.mjs";
+import * as listeners from "./handlers/index.mjs";
 import * as templates from "./templates/index.mjs";
 import * as postMethods from "./api/posts/index.mjs";
 
@@ -9,9 +8,13 @@ navbarHandler();
 const path = location.pathname;
 
 if (path === "/profile/login/") {
-  setLoginFormListener();
+  listeners.setLoginFormListener();
 } else if (path === "/profile/register/") {
-  setRegisterFormListener();
+  listeners.setRegisterFormListener();
+} else if (path === "post/create/") {
+  listeners.setCreatePostListener();
+} else if (path === "/post/edit/") {
+  listeners.setUpdatePostListener();
 }
 
 async function testTemplate() {
@@ -24,10 +27,10 @@ testTemplate();
 
 // * Create a post
 
-// createPost({
-//   title: "New Example Post",
-//   body: "Also an example",
-// });
+createPost({
+  title: "New Example Post",
+  body: "Also an example",
+});
 
 // * Update a post
 
