@@ -11,10 +11,12 @@ if (path === "/profile/login/") {
   listeners.setLoginFormListener();
 } else if (path === "/profile/register/") {
   listeners.setRegisterFormListener();
-} else if (path === "post/create/") {
-  listeners.setCreatePostListener();
+} else if (path === "/post/create/") {
+  listeners.setCreatePostFormListener();
 } else if (path === "/post/edit/") {
   listeners.setUpdatePostListener();
+} else if (path === "/post/") {
+  testTemplate();
 }
 
 async function testTemplate() {
@@ -23,14 +25,12 @@ async function testTemplate() {
   templates.renderPostTemplates(posts, container);
 }
 
-testTemplate();
-
 // * Create a post
 
-createPost({
-  title: "New Example Post",
-  body: "Also an example",
-});
+// createPost({
+//   title: "Example Post",
+//   body: "Also an example",
+// });
 
 // * Update a post
 

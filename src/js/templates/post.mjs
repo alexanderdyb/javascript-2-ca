@@ -3,6 +3,7 @@ export function postTemplateA(postData) {
 }
 
 export function postTemplateB(postData) {
+  console.log(postData);
   const post = document.createElement("div");
   post.classList.add("post");
   post.innerText = postData.title;

@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Profile on Noroff forum" />
     <title>Noroff forum | Create Post</title>
+    <script src="../../src/js/main.mjs" defer type="module"></script>
     <script
       src="https://kit.fontawesome.com/b23335820a.js"
       crossorigin="anonymous"
     ></script>
-    <script src="../../src/js/main.mjs" type="module" defer></script>
     <link rel="stylesheet" href="../../dist/output.css" />
   </head>
   <body class="bg-gray-100">
@@ -41,9 +41,9 @@
     </header>
     <main>
       <section>
-        <div>
+        <div class="max-w-xl mx-auto">
+          <h2 class="text-center mb-5">Create Post</h2>
           <form id="createPost">
-            <h2 class="text-center mb-5">Create Post</h2>
             <div class="flex flex-col mb-3">
               <label for="name">Title</label>
               <input
@@ -58,13 +58,12 @@
                 type="text"
                 name="body"
                 required
-              >
-              </textarea>
+              ></textarea>
               <label for="tags">Tags</label>
               <input
                 class="border-[1px] border-gray-400 p-1"
                 type="text"
-                name="tags"
+                name="tags[]"
               />
               <label for="media">Media</label>
               <input
