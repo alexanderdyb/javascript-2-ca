@@ -7,17 +7,40 @@ navbarHandler();
 
 const path = location.pathname;
 
-if (path === "/profile/login/") {
-  listeners.setLoginFormListener();
-} else if (path === "/profile/register/") {
-  listeners.setRegisterFormListener();
-} else if (path === "/post/create/") {
-  listeners.setCreatePostFormListener();
-} else if (path === "/post/edit/") {
-  listeners.setUpdatePostListener();
-} else if (path === "/post/") {
-  testTemplate();
+switch (path) {
+  case "/profile/login/":
+    listeners.setLoginFormListener();
+    break;
+  case "/profile/register/":
+    listeners.setRegisterFormListener();
+    break;
+  case "/post/create/":
+    listeners.setCreatePostFormListener();
+    break;
+  case "/post/edit/":
+    listeners.setUpdatePostListener();
+    break;
+  case "/post/":
+    testTemplate();
+    break;
+  case "/profile/edit/":
+    listeners.setUpdateProfileListener();
+    break;
 }
+
+// if (path === "/profile/login/") {
+//   listeners.setLoginFormListener();
+// } else if (path === "/profile/register/") {
+//   listeners.setRegisterFormListener();
+// } else if (path === "/post/create/") {
+//   listeners.setCreatePostFormListener();
+// } else if (path === "/post/edit/") {
+//   listeners.setUpdatePostListener();
+// } else if (path === "/post/") {
+//   testTemplate();
+// } else if (path === "/profile/edit/") {
+//   listeners.setUpdateProfileListener();
+// }
 
 async function testTemplate() {
   const posts = await postMethods.getPosts();
