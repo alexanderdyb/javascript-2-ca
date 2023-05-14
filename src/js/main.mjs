@@ -28,25 +28,30 @@ switch (path) {
     break;
 }
 
-// if (path === "/profile/login/") {
-//   listeners.setLoginFormListener();
-// } else if (path === "/profile/register/") {
-//   listeners.setRegisterFormListener();
-// } else if (path === "/post/create/") {
-//   listeners.setCreatePostFormListener();
-// } else if (path === "/post/edit/") {
-//   listeners.setUpdatePostListener();
-// } else if (path === "/post/") {
-//   testTemplate();
-// } else if (path === "/profile/edit/") {
-//   listeners.setUpdateProfileListener();
-// }
+const deleteButton = document.querySelectorAll(".deleteButton");
+
+deleteButton.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    console.log("clickedS");
+  });
+});
 
 async function testTemplate() {
   const posts = await postMethods.getPosts();
   const container = document.querySelector("#post");
   templates.renderPostTemplates(posts, container);
 }
+
+function logout() {
+  const logoutButton = document.querySelector(".logout");
+  logoutButton.addEventListener("click", () => {
+    localStorage.removeItem("profile");
+    localStorage.removeItem("token");
+    window.location.href = "/profile/login";
+  });
+}
+
+logout();
 
 // * Create a post
 

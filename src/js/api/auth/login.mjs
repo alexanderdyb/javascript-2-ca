@@ -5,21 +5,30 @@ const action = "/auth/login";
 const method = "post";
 
 export async function login(profile) {
-  const loginURL = API_SOCIAL_URL + action;
+  try {
+    const loginURL = API_SOCIAL_URL + action;
+    const errorMessage = document.querySelector("#errorMessage");
 
-  const response = await fetch(loginURL, {
-    headers: {
-      "Content-type": "application/json",
-    },
-    method,
-    body: JSON.stringify(profile),
-  });
+    const response = await fetch(loginURL, {
+      headers: {
+        "Content-type": "application/json",
+      },
+      method,
+      body: JSON.stringify(profile),
+    });
 
-  const { accessToken, ...user } = await response.json();
+    if (!response.ok) {
+      throw new Error("Login request failed");
+    }
 
-  storage.save("token", accessToken);
+    const { accessToken, ...user } = await response.json();
 
-  storage.save("profile", user);
+    storage.save("token", accessToken);
+    storage.save("profile", user);
 
-  // alert("You are now logged in");
+    window.location.href = "/post";
+  } catch (error) {
+    console.error("Login error:", error);
+    errorMessage.innerHTML = `<p>Failed to login. Try another username/password or register if you do not have an account</p>`;
+  }
 }
