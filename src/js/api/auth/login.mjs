@@ -1,34 +1,26 @@
 import { API_SOCIAL_URL } from "../constants.mjs";
-import * as storage from "../../storage/index.mjs";
 
 const action = "/auth/login";
 const method = "post";
 
 export async function login(profile) {
-  try {
-    const loginURL = API_SOCIAL_URL + action;
-    const errorMessage = document.querySelector("#errorMessage");
+  const loginURL = API_SOCIAL_URL + action;
 
-    const response = await fetch(loginURL, {
-      headers: {
-        "Content-type": "application/json",
-      },
-      method,
-      body: JSON.stringify(profile),
-    });
+  const response = await fetch(loginURL, {
+    headers: {
+      "Content-type": "application/json",
+    },
+    method,
+    body: JSON.stringify(profile),
+  });
 
-    if (!response.ok) {
-      throw new Error("Login request failed");
-    }
+  const json = await response.json();
 
-    const { accessToken, ...user } = await response.json();
+  console.log(json);
 
-    storage.save("token", accessToken);
-    storage.save("profile", user);
-
-    window.location.href = "/post";
-  } catch (error) {
-    console.error("Login error:", error);
-    errorMessage.innerHTML = `<p>Failed to login. Try another username/password or register if you do not have an account</p>`;
+  if (!response.ok) {
+    throw new Error(json.errors[0].message);
   }
+
+  return json;
 }

@@ -2,6 +2,7 @@ import { navbarHandler } from "./components/navbar.mjs";
 import * as listeners from "./handlers/index.mjs";
 import * as templates from "./templates/index.mjs";
 import * as postMethods from "./api/posts/index.mjs";
+import { logout } from "./api/auth/logout.mjs";
 
 navbarHandler();
 
@@ -16,64 +17,24 @@ switch (path) {
     break;
   case "/post/create/":
     listeners.setCreatePostFormListener();
+    logout();
     break;
   case "/post/edit/":
     listeners.setUpdatePostListener();
+    logout();
     break;
   case "/post/":
-    testTemplate();
+    template();
+    logout();
     break;
   case "/profile/edit/":
     listeners.setUpdateProfileListener();
+    logout();
     break;
 }
 
-const deleteButton = document.querySelectorAll(".deleteButton");
-
-deleteButton.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    console.log("clickedS");
-  });
-});
-
-async function testTemplate() {
+async function template() {
   const posts = await postMethods.getPosts();
   const container = document.querySelector("#post");
   templates.renderPostTemplates(posts, container);
 }
-
-function logout() {
-  const logoutButton = document.querySelector(".logout");
-  logoutButton.addEventListener("click", () => {
-    localStorage.removeItem("profile");
-    localStorage.removeItem("token");
-    window.location.href = "/profile/login";
-  });
-}
-
-logout();
-
-// * Create a post
-
-// createPost({
-//   title: "Example Post",
-//   body: "Also an example",
-// });
-
-// * Update a post
-
-// updatePost({
-//   id: 5604,
-//   title: "New Example Post UPDATED",
-//   body: "Also an example",
-// });
-
-// * Delete Post
-
-// post.createPost();
-// post.updatePost();
-// post.removePost();
-// post.getPost();
-// post.getPosts().then(console.log);
-
-// post.getPost(640).then(console.log);

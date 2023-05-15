@@ -15,6 +15,6 @@ export async function register(profile) {
   });
 
   const result = await response.json();
-  alert("You are now registered. You can now login.");
+  alert("You are registered. You can now login.");
   return result;
 }
