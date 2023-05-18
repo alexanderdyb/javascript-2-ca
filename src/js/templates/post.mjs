@@ -1,9 +1,5 @@
 import { removePost } from "../api/posts/delete.mjs";
 
-export function postTemplateA(postData) {
-  return `<div class="post">${postData.title}</div>`;
-}
-
 export function postTemplateB(postData) {
   const post = document.createElement("div");
   post.classList.add("post");
@@ -42,7 +38,42 @@ export function renderPostTemplate(postData, parent) {
 }
 
 export function renderPostTemplates(postDataList, parent) {
+  const filterPosts = document.querySelector("#filter");
+  const searchInput = document.querySelector("#search");
+
+  filterPosts.addEventListener("change", (event) => {
+    parent.innerHTML = "";
+    const filterValue = event.target.value;
+    if (filterValue === "image") {
+      const postsWithImages = postDataList.filter(function (el) {
+        return el.media !== "" && el.media !== null;
+      });
+
+      parent.append(...postsWithImages.map(postTemplateB));
+    } else {
+      parent.append(...postDataList.map(postTemplateB));
+    }
+  });
+
+  searchInput.addEventListener("input", () => {
+    parent.innerHTML = "";
+    const searchValue = searchInput.value;
+    const searchedPosts = searchPostsByValue(postDataList, searchValue);
+    parent.append(...searchedPosts.map(postTemplateB));
+  });
+
   parent.append(...postDataList.map(postTemplateB));
+}
+
+function searchPostsByValue(posts, value) {
+  const searchTerm = value.toLowerCase().trim();
+  return posts.filter((post) => {
+    const lowercaseTitle = post.title ? post.title.toLowerCase() : "";
+    const lowercaseBody = post.body ? post.body.toLowerCase() : "";
+    return (
+      lowercaseTitle.includes(searchTerm) || lowercaseBody.includes(searchTerm)
+    );
+  });
 }
 
 function confirmDeletePost(event) {

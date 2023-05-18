@@ -24,7 +24,7 @@
               id="menu"
             >
               <li class="mb-5 md:mb-0"><a href="/profile/edit/">Profile</a></li>
-              <li class="mb-5"><a href="/post">Post</a></li>
+              <li class="mb-5 underline"><a href="/post">Post</a></li>
               <li>
                 <button class="logout md:border-l-2 pl-2">Logout</button>
               </li>
@@ -47,6 +47,19 @@
             class="border px-3 py-2 bg-blue-950 text-white"
             >Create a post</a
           >
+        </div>
+        <div class="mx-auto max-w-[500px] mt-7">
+          <div>
+            <label>Filter posts</label>
+            <select id="filter">
+              <option value="all">All posts</option>
+              <option value="image">With images</option>
+            </select>
+          </div>
+          <div class="mt-5">
+            <label for="search">Search</label>
+            <input id="search" type="text" name="search" />
+          </div>
         </div>
       </section>
       <section class="ml-3 mr-3">
