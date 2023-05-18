@@ -1,5 +1,12 @@
 import { register } from "../api/auth/register.mjs";
 
+/**
+ * Sets up a form listener for the registration form.
+ * When the form is submitted, it prevents the default form submission behavior,
+ * collects the form data, and registers a new user using the provided profile information.
+ *
+ * @returns {void}
+ */
 export function setRegisterFormListener() {
   const form = document.querySelector("#registerForm");
 

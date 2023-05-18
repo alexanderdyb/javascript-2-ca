@@ -1,6 +1,10 @@
 import { createPost } from "../api/posts/create.mjs";
 import { displayMessage } from "./message.mjs";
 
+/**
+ * Sets up a listener for the submission of the create post form.
+ * When the form is submitted, it extracts the form data, creates a post, and displays a success or error message.
+ */
 export function setCreatePostFormListener() {
   const form = document.querySelector("#createPost");
   const editContainer = document.querySelector("#editContainer");

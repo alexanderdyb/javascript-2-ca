@@ -1,3 +1,7 @@
+/**
+ * Logs out the user by removing the profile and token from the local storage
+ * and redirecting to the login page.
+ */
 export function logout() {
   const logoutButton = document.querySelector(".logout");
   if (logoutButton) {

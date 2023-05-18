@@ -1,3 +1,6 @@
+/**
+ * Handles the functionality of the navigation bar with a hamburger menu icon and a close icon.
+ */
 export function navbarHandler() {
   const hamburger = document.querySelector("#hamburger");
   const close = document.querySelector("#close");

@@ -4,6 +4,13 @@ import { authFetch } from "../authFetch.mjs";
 const action = "/posts";
 const method = "put";
 
+/**
+ * Updates a post.
+ * @param {Object} postData - The data for the post update.
+ * @param {string} postData.id - The ID of the post to update.
+ * @returns {Promise<Object>} - The response JSON object.
+ * @throws {Error} - If the ID is missing.
+ */
 export async function updatePost(postData) {
   if (!postData.id) {
     throw new Error("Update requires a postID");

@@ -5,6 +5,14 @@ const updateProfileContainer = document.querySelector(
   "#updateProfileContainer"
 );
 
+/**
+ * Sets up a form listener for updating the user profile.
+ * Loads the user profile data, pre-fills the form with the data,
+ * and handles the form submission for updating the profile.
+ * Displays success or error messages accordingly.
+ *
+ * @returns {Promise<void>}
+ */
 export async function setUpdateProfileListener() {
   const form = document.querySelector("#editProfile");
 

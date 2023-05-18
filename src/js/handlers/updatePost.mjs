@@ -2,6 +2,15 @@ import { getPost, updatePost } from "../api/posts/index.mjs";
 import { displayMessage } from "./message.mjs";
 const updatePostContainer = document.querySelector("#updatePostContainer");
 
+/**
+ * Sets up a form listener for updating a post.
+ * Retrieves the post information based on the provided post ID,
+ * pre-fills the form with the retrieved post data,
+ * and handles the form submission for updating the post.
+ * Displays success or error messages accordingly.
+ *
+ * @returns {Promise<void>}
+ */
 export async function setUpdatePostListener() {
   const form = document.querySelector("#editPost");
 

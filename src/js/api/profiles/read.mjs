@@ -11,6 +11,12 @@ export async function getProfiles(name) {
   return await response.json();
 }
 
+/**
+ * Retrieves a specific profile.
+ * @param {string} name - The name of the profile to retrieve.
+ * @returns {Promise<Object>} - The response JSON object.
+ * @throws {Error} - If the name is missing.
+ */
 export async function getProfile(name) {
   if (!name) {
     throw new Error("Get requires a name");

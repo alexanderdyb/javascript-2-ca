@@ -1,6 +1,13 @@
 import { login } from "../api/auth/login.mjs";
 import * as storage from "../storage/index.mjs";
 
+/**
+ * Sets up a form listener for the login form.
+ * When the form is submitted, it prevents the default form submission behavior,
+ * collects the form data, and attempts to log in using the provided profile information.
+ * If successful, it saves the access token and user profile in the storage and redirects to the "/post" page.
+ * If unsuccessful, it displays an error message.
+ */
 export function setLoginFormListener() {
   const form = document.querySelector("#loginForm");
 
