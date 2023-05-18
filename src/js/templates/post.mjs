@@ -113,7 +113,6 @@ function searchPostsByValue(posts, value) {
 function confirmDeletePost(event) {
   const postId = event.target.getAttribute("data-id");
   const confirmed = confirm("Are you sure you want to delete this post?");
-  console.log(confirmed);
   if (confirmed) {
     removePost(postId);
   }
