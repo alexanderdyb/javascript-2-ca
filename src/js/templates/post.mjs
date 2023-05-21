@@ -76,7 +76,6 @@ export function renderPostTemplates(postDataList, parent) {
     } else if (filterValue === "myPosts") {
       try {
         const listOfMyPosts = await getMyPosts();
-        console.log(listOfMyPosts);
         parent.append(...listOfMyPosts.map(postTemplateB));
       } catch (error) {
         console.error(error);
