@@ -1,4 +1,6 @@
-import { removePost } from "../api/posts/delete.mjs";
+import { getMyPosts } from "../api/posts/readMyPosts.mjs";
+import { confirmDeletePost } from "../handlers/confirmDeletePost.mjs";
+import { searchPostsByValue } from "../handlers/searchPosts.mjs";
 
 /**
  * Generates the HTML template for rendering a post.
@@ -62,7 +64,7 @@ export function renderPostTemplates(postDataList, parent) {
   const filterPosts = document.querySelector("#filter");
   const searchInput = document.querySelector("#search");
 
-  filterPosts.addEventListener("change", (event) => {
+  filterPosts.addEventListener("change", async (event) => {
     parent.innerHTML = "";
     const filterValue = event.target.value;
     if (filterValue === "image") {
@@ -71,6 +73,14 @@ export function renderPostTemplates(postDataList, parent) {
       });
 
       parent.append(...postsWithImages.map(postTemplateB));
+    } else if (filterValue === "myPosts") {
+      try {
+        const listOfMyPosts = await getMyPosts();
+        console.log(listOfMyPosts);
+        parent.append(...listOfMyPosts.map(postTemplateB));
+      } catch (error) {
+        console.error(error);
+      }
     } else {
       parent.append(...postDataList.map(postTemplateB));
     }
@@ -84,36 +94,4 @@ export function renderPostTemplates(postDataList, parent) {
   });
 
   parent.append(...postDataList.map(postTemplateB));
-}
-
-/**
- * Searches posts based on a search value.
- *
- * @param {Object[]} posts - The list of post data objects to be searched.
- * @param {string} value - The search value.
- * @returns {Object[]} The filtered list of posts matching the search value.
- */
-function searchPostsByValue(posts, value) {
-  const searchTerm = value.toLowerCase().trim();
-  return posts.filter((post) => {
-    const lowercaseTitle = post.title ? post.title.toLowerCase() : "";
-    const lowercaseBody = post.body ? post.body.toLowerCase() : "";
-    return (
-      lowercaseTitle.includes(searchTerm) || lowercaseBody.includes(searchTerm)
-    );
-  });
-}
-
-/**
- * Handles the confirmation and deletion of a post.
- *
- * @param {Event} event - The event object representing the click event on the delete button.
- * @returns {void}
- */
-function confirmDeletePost(event) {
-  const postId = event.target.getAttribute("data-id");
-  const confirmed = confirm("Are you sure you want to delete this post?");
-  if (confirmed) {
-    removePost(postId);
-  }
 }
